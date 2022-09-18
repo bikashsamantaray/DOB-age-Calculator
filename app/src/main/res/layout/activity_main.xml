@@ -65,6 +65,18 @@
 
 
     <TextView
+        android:id="@+id/tv_lived"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have lived"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="@color/textBrown"
+        tools:visibility="visible"
+        android:visibility="invisible"
+        />
+
+    <TextView
         android:id="@+id/tvAgeInMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

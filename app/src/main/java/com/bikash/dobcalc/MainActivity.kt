@@ -1,8 +1,10 @@
 package com.bikash.dobcalc
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.TextView
@@ -18,18 +20,11 @@ class MainActivity : AppCompatActivity() {
     val day = myCalendar.get(Calendar.DAY_OF_MONTH)
     var selectedDate:String?=""
 
-
-
-
-    private var tvAgeInMiutes: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val btnCalculateAgeMinutes: Button = findViewById(R.id.btnCalculateAgeMinutes)
-
-        tvAgeInMiutes = findViewById(R.id.tvAgeInMinutes)
 
         val selectDate=findViewById<Button>(R.id.tvSelectedDate)
         selectDate.setOnClickListener{
@@ -53,8 +48,6 @@ class MainActivity : AppCompatActivity() {
             selectedDate = "$selectedDayOfMonth/${selectedMonth+1}/$selectedYear"
             tvSelectedDate.text = selectedDate
 
-
-
         },
             year, month, day)
 
@@ -67,19 +60,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun calculateMinutes(){
+    @SuppressLint("SetTextI18n")
+    private fun calculateMinutes(){
+        val tvLived = findViewById<TextView>(R.id.tv_lived)
+        val tvAgeInMinutes = findViewById<TextView>(R.id.tvAgeInMinutes)
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val theDate = sdf.parse(selectedDate)
-        theDate?.let {
-            val selectedDateInMinutes = theDate.time / 60000
-            val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
-            currentDate?.let {
-                val currentDateInMinutes = currentDate.time / 60000
-                val differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
-                tvAgeInMiutes?.text = differenceInMinutes.toString()
-            }
+        val theDate = sdf.parse(selectedDate.toString())
+        val selectedDateInMinutes = theDate.time / 60000
+        val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
 
-        }
+        val currentDateInMinutes = currentDate.time / 60000
+        val differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
+        tvLived.visibility = View.VISIBLE
+        tvAgeInMinutes.text = differenceInMinutes.toString() + " minutes"
+
+
+
 
     }
 }
