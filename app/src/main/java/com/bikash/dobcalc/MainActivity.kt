@@ -14,11 +14,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val myCalendar = Calendar.getInstance()
-    val year = myCalendar.get(Calendar.YEAR)
-    val month = myCalendar.get(Calendar.MONTH)
-    val day = myCalendar.get(Calendar.DAY_OF_MONTH)
-    var selectedDate:String?=""
+    var selectedDate:String?= null
+    var tvselectDate: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         val btnCalculateAgeMinutes: Button = findViewById(R.id.btnCalculateAgeMinutes)
 
-        val selectDate=findViewById<Button>(R.id.tvSelectedDate)
-        selectDate.setOnClickListener{
+        tvselectDate = findViewById(R.id.tvSelectedDate)
+        tvselectDate?.setOnClickListener{
             clickDatePicker()
         }
         btnCalculateAgeMinutes.setOnClickListener{
@@ -38,15 +35,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun clickDatePicker() {
 
-
-        val tvSelectedDate = findViewById<TextView>(R.id.tvSelectedDate)
-
-
+        val myCalendar = Calendar.getInstance()
+        val year = myCalendar.get(Calendar.YEAR)
+        val month = myCalendar.get(Calendar.MONTH)
+        val day = myCalendar.get(Calendar.DAY_OF_MONTH)
         val dpd = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ _ , selectedYear , selectedMonth, selectedDayOfMonth ->
             Toast.makeText(this,"the day is $selectedDayOfMonth and the month is ${selectedMonth+1} and the year is $selectedYear",
                 Toast.LENGTH_LONG).show()
             selectedDate = "$selectedDayOfMonth/${selectedMonth+1}/$selectedYear"
-            tvSelectedDate.text = selectedDate
+            tvselectDate?.text = selectedDate
 
         },
             year, month, day)
@@ -62,19 +59,22 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun calculateMinutes(){
-        val tvLived = findViewById<TextView>(R.id.tv_lived)
-        val tvAgeInMinutes = findViewById<TextView>(R.id.tvAgeInMinutes)
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val theDate = sdf.parse(selectedDate.toString())
-        val selectedDateInMinutes = theDate.time / 60000
-        val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
 
-        val currentDateInMinutes = currentDate.time / 60000
-        val differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
-        tvLived.visibility = View.VISIBLE
-        tvAgeInMinutes.text = differenceInMinutes.toString() + " minutes"
+        if (selectedDate != null){
+            val tvLived = findViewById<TextView>(R.id.tv_lived)
+            val tvAgeInMinutes = findViewById<TextView>(R.id.tvAgeInMinutes)
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val theDate = sdf.parse(selectedDate.toString())
+            val selectedDateInMinutes = theDate.time / 60000
+            val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
 
-
+            val currentDateInMinutes = currentDate.time / 60000
+            val differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
+            tvLived.visibility = View.VISIBLE
+            tvAgeInMinutes.text = differenceInMinutes.toString() + " minutes"
+        }else{
+            Toast.makeText(this,"First choose the date then calculate",Toast.LENGTH_LONG).show()
+        }
 
 
     }
