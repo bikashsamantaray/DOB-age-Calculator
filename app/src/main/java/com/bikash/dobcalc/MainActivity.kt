@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             val currentDateInMinutes = currentDate.time / 60000
             val differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
             tvLived.visibility = View.VISIBLE
-            tvAgeInMinutes.text = differenceInMinutes.toString() + " minutes"
+            tvAgeInMinutes.text = "$differenceInMinutes minutes"
         }else{
             Toast.makeText(this,"First choose the date then calculate",Toast.LENGTH_LONG).show()
         }
