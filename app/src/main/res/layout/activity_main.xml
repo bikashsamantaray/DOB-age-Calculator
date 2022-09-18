@@ -10,86 +10,72 @@
     android:gravity="center_horizontal"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="CALCULATE YOUR"
-        android:textColor="@color/textBrown"
-        android:textSize="25sp"
-        android:textStyle="bold"
-         />
+<ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_marginTop="70dp"
+    android:src="@drawable/age_calculator_icon"/>
+
 
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="AGE"
+        android:layout_marginTop="18dp"
+        android:text="AGE CALCULATOR"
         android:padding="10dp"
-        android:background="@color/textBrown"
+        android:background="#CD4D07"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+
+
+
+
+    <Button
+        android:id="@+id/tvSelectedDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Select DOB Here"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="IN MINUTES"
-        android:textColor="@color/textBrown"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        />
+        android:backgroundTint="@color/textBrown"/>
+
 
     <Button
-        android:id="@+id/btnDatePicker"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btnCalculateAgeMinutes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "SELECT DATE"
+        android:text = "Calculate minutes"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:textSize="18sp"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/btnBgColor"/>
-
-    <TextView
-        android:id="@+id/tvSelectedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="10.04.2002"
-        android:textColor="@color/textBrown"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Selected Date"
-        android:textColor="@color/selectedDate"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/textBrown"
         />
+
+
 
     <TextView
         android:id="@+id/tvAgeInMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="1700000"
+        android:background="@color/teal_200"
+        android:text="Age in Minutes"
         android:textColor="@color/textBrown"
         android:textSize="35sp"
         android:textStyle="bold"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Age In Minutes"
-        android:textColor="@color/selectedDate"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
+
 
 </LinearLayout>
